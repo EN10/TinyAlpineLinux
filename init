@@ -1,0 +1,11 @@
+#!/bin/sh
+
+mount -t devtmpfs dev /dev
+mount -t proc proc /proc
+mount -t sysfs sysfs /sys
+mkdir -p /dev/pts
+mount -t devpts devpts /dev/pts
+
+# Proper console session
+exec 0</dev/console 1>/dev/console 2>/dev/console
+exec sh -l
